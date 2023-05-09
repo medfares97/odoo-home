@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    #>Main menu
+
+    <menuitem id="menu_hospital_root"
+              name="Hospital"
+              sequence="0"/>
+
+    #Child menu or SubMenu
+
+    <menuitem id="menu_patient_master"
+              name="Patient Details"
+              parent="menu_hospital_root"
+              sequence="0"/>
+
+    #Child menu  or SubMenu
+    <!--      this action is returning this model
+              => the DATA from this model hospital.patient
+              => we have define the access right for that object  -->
+
+
+    <menuitem id="menu_patient"
+              name="Patient"
+              action="action_hospital_patient"
+              parent="menu_patient_master"
+              sequence="0"/>
+
+
+</odoo>
