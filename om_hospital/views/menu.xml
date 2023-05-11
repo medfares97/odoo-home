@@ -5,6 +5,7 @@
 
     <menuitem id="menu_hospital_root"
               name="Hospital"
+              web_icon="om_hospital,static/description/icon.png"
               sequence="0"/>
 
     #Child menu or SubMenu
@@ -14,17 +15,12 @@
               parent="menu_hospital_root"
               sequence="0"/>
 
-    #Child menu  or SubMenu
     <!--      this action is returning this model
               => the DATA from this model hospital.patient
               => we have define the access right for that object  -->
 
 
-    <menuitem id="menu_patient"
-              name="Patient"
-              action="action_hospital_patient"
-              parent="menu_patient_master"
-              sequence="0"/>
+
 
 
 </odoo>
