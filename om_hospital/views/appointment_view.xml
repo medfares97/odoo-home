@@ -18,17 +18,41 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" nolable="1" options="{'clickable': '1'}"
+                    statusbar_visible="draft,in_consultation,done"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="patient_id"/>
-                            <field name="appointment_time"/>
+                            <field name="ref"/>
+                            <field name="gender"/>
                             <field name="booking_date"/>
                         </group>
                         <group>
+                            <field name="appointment_time"/>
+                            <!-- search for the function 'action_test' inside hospital.appointment-->
+                            <button name="action_test" string="Test Button" type="object" class="oe_highlight"/>
+                            <button name="%(om_hospital.action_hospital_patient)d" string="Action Button"
+                                    type="action" class="oe_highlight"/>
 
                         </group>
                     </group>
+                    <!-- Add notebook to form appointement view  -->
+                    <notebook>
+                        <page string="Prescription" name="prescription">
+                            <field name="prescription" placeholder="Enter your prescription"/>
+                        </page>
+                        <page string="Pharmacy" name="pharmacy">
+                        </page>
+                    </notebook>
+
                 </sheet>
 
                 <!-- Chatter  -->
@@ -46,6 +70,10 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <search>
+                <searchpanel>
+                    <field name="patient_id" enable_counters="1" icon="fa-users" select="multi"/>
+
+                </searchpanel>
             </search>
         </field>
     </record>
@@ -66,9 +94,9 @@
     #submenu
     # this item call the action => the action show the search,form and tree views
     <menuitem id="menu_appointment"
-              name=""
+              name="Appointment"
               action="action_hospital_appointment"
-              parent="menu_patient_master"
+              parent="menu_appointment_master"
               sequence="10"/>
 
 

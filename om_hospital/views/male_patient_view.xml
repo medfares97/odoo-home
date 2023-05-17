@@ -18,7 +18,7 @@
     #submenu
 
     <menuitem id="menu_male_patient"
-              name="Male Patient"
+              name="Male Details"
               action="action_hospital_male_patient"
               parent="menu_patient_master"
               sequence="0"/>
