@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    decoration-success -- green
+    decoration-danger -- red
+    decoration_warning -- orange
+    decoration-info -- light blue
+    decoration-muted -- yellow
 
     <record id="view_hospital_appointment_tree" model="ir.ui.view">
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="patient_id"/>
-                <field name="appointment_time"/>
-                <field name="booking_date"/>
+            <tree decoration-success="state == 'done'"
+                  decoration-danger="state == 'cancel'"
+                  decoration-warning="state == 'in_consultation'" sample="1" multi_edit="1">
+                <field name="patient_id" optional="show"/>
+                <field name="ref" optional="show"/>
+                <field name="gender" optional="show"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
+                <field name="appointment_time" optional="show"/>
+                <field name="booking_date" optional="show"/>
+                <field name="activity_ids" widget="list_activity"/>
+                <!-- Badge widget and decoration -->
+                <field name="state"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'draft'"
+                       decoration-danger="state == 'cancel'"
+                       decoration-warning="state == 'in_consultation'"
+                       widget="badge" optional="show"/>
             </tree>
         </field>
     </record>
@@ -19,8 +37,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" nolable="1" options="{'clickable': '1'}"
-                    statusbar_visible="draft,in_consultation,done"/>
+                    <button name="action_in_consultation" string="In Consultation" type="object"/>
+                    <button name="action_done" string="Mark As Done" type="object"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <!-- options="{'clickable': '1'}" -->
+                    <field name="state" widget="statusbar" nolable="1" />
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -33,28 +54,31 @@
                             <field name="patient_id"/>
                             <field name="ref"/>
                             <field name="gender"/>
-                            <field name="booking_date"/>
+                            <field name="doctor_id"/>
+                            <field name="booking_date" help="Date of booking" default_focus="1"/>
                         </group>
                         <group>
                             <field name="appointment_time"/>
                             <!-- search for the function 'action_test' inside hospital.appointment-->
-                            <button name="action_test" string="Test Button" type="object" class="oe_highlight"/>
+                            <button name="action_test" string="Test Button" type="object"
+                                    help="A message will be printed in the log"
+                                    confirm="Are you sure to execute the python code ?"
+                                    class="oe_highlight"/>
                             <button name="%(om_hospital.action_hospital_patient)d" string="Action Button"
+                                    help="On clicking this you will be redirected to patient records"
+                                    confirm="Ae you sure to open the patient action ?"
                                     type="action" class="oe_highlight"/>
-
                         </group>
                     </group>
-                    <!-- Add notebook to form appointement view  -->
                     <notebook>
                         <page string="Prescription" name="prescription">
-                            <field name="prescription" placeholder="Enter your prescription"/>
+                            <field name="prescription" placeholder="Enter your prescription"
+                            options="{'collaborative': true, 'resizable':true}"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
                         </page>
                     </notebook>
-
                 </sheet>
-
                 <!-- Chatter  -->
                 <div class="oe_chatter">
                     <field name="message_follower_ids" groups="base.group_user"/>

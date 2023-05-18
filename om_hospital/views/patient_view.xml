@@ -6,10 +6,10 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" string="Patient Name"/>
-                <field name="ref"/>
-                <field name="age"/>
-                <field name="gender"/>
+                <field name="name" string="Patient Name" optional="show"/>
+                <field name="ref" optional="show"/>
+                <field name="age" optional="show"/>
+                <field name="gender" optional="show"/>
             </tree>
         </field>
     </record>
