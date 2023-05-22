@@ -1,4 +1,3 @@
-
 {
     'name': "Hospital Management",
     'version': '1.0.0',
@@ -18,6 +17,7 @@
     'demo': [],
 
     'auto-install': False,
+    'installable': True,
     'license': 'LGPL-3',
     'application': True,
 }

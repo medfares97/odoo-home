@@ -35,7 +35,6 @@
                         </group>
                     </group>
                 </sheet>
-
                 <!-- Chatter  -->
 
                 <div class="oe_chatter">
@@ -58,7 +57,6 @@
                 <field name="gender"/>
                 <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
-                <filter name="filter_kids" string="Kids" domain="[('date_of_birth', '&lt;=', 5)]"/>
                 <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/>
                 <group expand="0" string="Group By">
                         <filter string="Gender" name="group_by_gender" domain="[]" context="{'group_by': 'gender'}"/>
