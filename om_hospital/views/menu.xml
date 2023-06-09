@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    #>Main menu
+    <!-- Main menu -->
 
     <menuitem id="menu_hospital_root"
               name="Hospital"
               web_icon="om_hospital,static/description/icon.png"
               sequence="0"/>
-
-    #Child menu or SubMenu
 
     <menuitem id="menu_patient_master"
               name="Patients"
@@ -20,12 +18,10 @@
               parent="menu_hospital_root"
               sequence="20"/>
 
-    <!--      this action is returning this model
-              => the DATA from this model hospital.patient
-              => we have define the access right for that object  -->
-
-
-
+    <menuitem id="menu_configuration"
+              name="Configurations"
+              parent="menu_hospital_root"
+              sequence="100"/>
 
 
 </odoo>
